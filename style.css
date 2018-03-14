@@ -1,0 +1,55 @@
+/*
+ Theme Name:   Aeris Child pour docs components
+ Theme URI:    https://github.com/aeris-data/aeris-wordpress-theme-child-components
+ Description:  Theme enfant Aeris utilisant Advanced Custom Fields
+ Author:       AERIS SEDOO OMP - Pierre VERT
+ Author URI:   http://sedoo.fr
+ Template:     aeris-wordpress-theme
+ Version:      0.1.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Text Domain:  aeris-wordpress-theme-child Doc components
+ GitHub Theme URI: aeris-data/aeris-wordpress-theme-child-components
+ GitHub Branch: master
+*/
+
+/* LAYOUT */
+.component article {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.component article > header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.component article > .wrapper-content {
+    flex:1 1 auto;
+    padding-right: 30px;
+}
+
+.component article > aside {
+    flex:1 0 250px;
+}
+
+
+/* ETATS */
+.aeris-component-state {
+    width: 100px;
+    height: 100px;
+    border-radius:50%;
+    color:white;
+    line-height: 100px;
+    text-align: center;
+}
+.actif {
+    background:#7DBF3B;
+}
+.a-faire {
+    background: #E25B3D;
+}
+.en-dev {
+    background: #DD9946;
+}
