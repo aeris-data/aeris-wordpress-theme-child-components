@@ -5,7 +5,6 @@ function theme_enqueue_styles() {
 
 }
 
-
 /******************************************************************
 * CUSTOM TAXONOMIES 
 */
@@ -13,10 +12,10 @@ function theme_enqueue_styles() {
 add_action('init', 'aeris_component_custom_taxonomies');
 function aeris_component_custom_taxonomies()
 {
- // Thematiques 
+    // Etat du composant :  Actif / en dev / A faire / obsolete
     register_taxonomy(
         'etat',
-        'page',
+        'component',
         array(
         'label' => 'Etats',
         'labels' => array(
@@ -34,9 +33,55 @@ function aeris_component_custom_taxonomies()
         'hierarchical' => true,
         'show_ui'   => true
         )
-  ); 
+    ); 
 
-    register_taxonomy_for_object_type( 'etat', 'component' );
+    // Projet 
+    register_taxonomy(
+        'projet',
+        'component',
+        array(
+        'label' => 'Projets',
+        'labels' => array(
+            'name' => 'Projets',
+            'singular_name' => 'Projet',
+            'all_items' => 'Tous les projets',
+            'edit_item' => 'Éditer le projet',
+            'view_item' => 'Voir le projet',
+            'update_item' => 'Mettre à jour le projet',
+            'add_new_item' => 'Ajouter un projet',
+            'new_item_name' => 'Nouveau projet',
+            'search_items' => 'Rechercher parmi les projets',
+            'popular_items' => 'projets les plus utilisées'
+            ),
+        'hierarchical' => true,
+        'show_ui'   => true
+        )
+    );
+
+    // Type de fonctionnalité
+    register_taxonomy(
+        'fonctionnalite',
+        'component',
+        array(
+        'label' => 'Fonctionnalités',
+        'labels' => array(
+            'name' => 'Fonctionnalités',
+            'singular_name' => 'Type de Fonctionnalité',
+            'all_items' => 'Toutes les fonctionnalités',
+            'edit_item' => 'Éditer la fonctionnalité',
+            'view_item' => 'Voir la fonctionnalité',
+            'update_item' => 'Mettre à jour la fonctionnalité',
+            'add_new_item' => 'Ajouter une fonctionnalité',
+            'new_item_name' => 'Nouvelle fonctionnalité',
+            'search_items' => 'Rechercher parmi les fonctionnalités',
+            'popular_items' => 'fonctionnalités les plus utilisées'
+            ),
+        'hierarchical' => true,
+        'show_ui'   => true
+        )
+    );
+
+    // register_taxonomy_for_object_type( 'etat', 'component' );
 }
 
 /******************************************************************
@@ -81,7 +126,7 @@ if( function_exists('acf_add_local_field_group') ):
         'fields' => array (
             array (
                 'key' => 'field_5aa7ffe0652cc',
-                'label' => 'Dépendance',
+                'label' => 'Dépendances',
                 'name' => 'dependance',
                 'type' => 'relationship',
                 'instructions' => '',
@@ -93,7 +138,7 @@ if( function_exists('acf_add_local_field_group') ):
                     'id' => '',
                 ),
                 'post_type' => array (
-                    0 => 'page',
+                    0 => 'component',
                 ),
                 'taxonomy' => array (
                 ),
@@ -107,25 +152,25 @@ if( function_exists('acf_add_local_field_group') ):
                 'max' => '',
                 'return_format' => 'object',
             ),
-            array (
-                'key' => 'field_5aa80064652ce',
-                'label' => 'Code',
-                'name' => 'code',
-                'type' => 'textarea',
-                'instructions' => '',
-                'required' => 0,
-                'conditional_logic' => 0,
-                'wrapper' => array (
-                    'width' => '',
-                    'class' => '',
-                    'id' => '',
-                ),
-                'default_value' => '',
-                'placeholder' => '',
-                'maxlength' => '',
-                'rows' => 30,
-                'new_lines' => '',
-            ),
+            // array (
+            //     'key' => 'field_5aa80064652ce',
+            //     'label' => 'Code',
+            //     'name' => 'code',
+            //     'type' => 'textarea',
+            //     'instructions' => '',
+            //     'required' => 0,
+            //     'conditional_logic' => 0,
+            //     'wrapper' => array (
+            //         'width' => '',
+            //         'class' => '',
+            //         'id' => '',
+            //     ),
+            //     'default_value' => '',
+            //     'placeholder' => '',
+            //     'maxlength' => '',
+            //     'rows' => 20,
+            //     'new_lines' => '',
+            // ),
         ),
         'location' => array (
             array (
