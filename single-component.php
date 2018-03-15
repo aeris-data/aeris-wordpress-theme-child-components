@@ -61,13 +61,62 @@ while ( have_posts() ) : the_post();
             </header>
             
             <div class="wrapper-content">
-            <?php
-                the_content();
-                wp_link_pages( array(
-                    'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'theme-aeris' ),
-                    'after'  => '</div>',
-                ) );
-            ?>
+                <?php 
+                if (get_field('objectif')) {
+                ?>
+                <section>
+                    <h2>Objectifs</h2>
+                    <?php the_field('objectif'); ?>
+                </section>
+                <?php    
+                }
+                ?>
+
+                <?php 
+                if (get_field('exemple')) {
+                ?>
+                <section>
+                    <h2>Exemple d'utilisation</h2>
+                    <?php the_content();
+                    //the_field('exemple');?>
+                </section>
+                <?php    
+                }
+                ?>
+
+                <?php 
+                if (get_field('proprietes')) {
+                ?>
+                <section>
+                    <h2>Propriétés de la balise</h2>
+                    <?php the_field('proprietes'); ?>
+                </section>
+                <?php    
+                }
+                ?>
+
+                <?php 
+                if (get_field('evenements')) {
+                ?>
+                <section>
+                    <h2>Evénements</h2>
+                    <?php the_field('evenements'); ?>
+                </section>
+                <?php    
+                }
+                ?>
+
+                <?php 
+                if (get_field('infos')) {
+                ?>
+                <section>
+                    <h2>Infos complémentaires</h2>
+                    <?php the_field('infos'); ?>
+                </section>
+                <?php    
+                }
+                ?>
+
                 <!-- <section class="aeris-component-code">
                     <pre>
                     <?php //the_field('code'); ?>
@@ -75,6 +124,31 @@ while ( have_posts() ) : the_post();
                 <section> -->
             </div>
             <aside>
+                 <?php 
+                if (get_field('lien_github')) {
+                ?>
+                <section>
+                    <h2>Lien dépôt de source (Git)</h2>
+                    <p><a href="<?php the_field('lien_github'); ?>"><?php the_field('lien_github'); ?>
+                    </a></p>
+                    
+                </section>
+                <?php    
+                }
+                ?>
+
+                 <?php 
+                if (get_field('demo_url')) {
+                ?>
+                <section>
+                    <h2>Page de démo</h2>
+                    <p><a href="<?php the_field('demo_url'); ?>"><?php the_field('demo_url'); ?>
+                    </a></p>
+                </section>
+                <?php    
+                }
+                ?>
+
                 <?php
 
                 $dependances = get_field('dependance');
