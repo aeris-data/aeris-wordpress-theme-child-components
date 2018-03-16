@@ -5,7 +5,7 @@
  Author:       AERIS SEDOO OMP - Pierre VERT
  Author URI:   http://sedoo.fr
  Template:     aeris-wordpress-theme
- Version:      0.1.1
+ Version:      0.1.2
  License:      GNU General Public License v2 or later
  License URI:  http://www.gnu.org/licenses/gpl-2.0.html
  Text Domain:  aeris-wordpress-theme-child Doc components
@@ -34,6 +34,35 @@
     flex:1 0 250px;
 }
 
+/* SECTIONS */
+.component article > header > section {
+    margin-right: 20px;
+}
+
+.aeris-component-fonctionnalite {
+    
+}
+
+.aeris-component-git {
+    font-size: 1.5rem;
+}
+.aeris-component-git a {
+    display: block;
+    margin-top: 20px;
+    padding:0 5px;
+    background:#009FDE;
+    border-radius: 5px;
+    color:#FFF;
+    text-decoration: none;
+}
+
+.aeris-component-git a:hover {
+    background: #333;
+}
+
+.aeris-component-demo .icon-play::before {
+    content:'\25BA';
+}
 
 /* ETATS */
 .aeris-component-state {
