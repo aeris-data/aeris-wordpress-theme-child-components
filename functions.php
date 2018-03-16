@@ -97,7 +97,7 @@ function aeris_component_post_type() {
           'label' => 'Composant',
           'labels' => array(
             'name' => 'Composants',
-            'singular_name' => 'Componsant',
+            'singular_name' => 'Composant',
             'all_items' => 'Tous les composants',
             'add_new_item' => 'Ajouter un componsant',
             'edit_item' => 'Éditer le componsant',
@@ -120,11 +120,11 @@ function aeris_component_post_type() {
 
 if( function_exists('acf_add_local_field_group') ):
 
-    acf_add_local_field_group(array (
+    acf_add_local_field_group(array(
         'key' => 'group_5aa7fd7ac2ed6',
         'title' => 'Meta component page',
-        'fields' => array (
-            array (
+        'fields' => array(
+            array(
                 'key' => 'field_5aa7ffe0652cc',
                 'label' => 'Dépendance',
                 'name' => 'dependance',
@@ -132,17 +132,17 @@ if( function_exists('acf_add_local_field_group') ):
                 'instructions' => '',
                 'required' => 0,
                 'conditional_logic' => 0,
-                'wrapper' => array (
+                'wrapper' => array(
                     'width' => '',
                     'class' => '',
                     'id' => '',
                 ),
-                'post_type' => array (
+                'post_type' => array(
                     0 => 'component',
                 ),
-                'taxonomy' => array (
+                'taxonomy' => array(
                 ),
-                'filters' => array (
+                'filters' => array(
                     0 => 'search',
                     1 => 'taxonomy',
                 ),
@@ -151,7 +151,7 @@ if( function_exists('acf_add_local_field_group') ):
                 'max' => '',
                 'return_format' => 'object',
             ),
-            array (
+            array(
                 'key' => 'field_5aaa7a51d2d19',
                 'label' => 'Lien dépôt de source (Git)',
                 'name' => 'lien_github',
@@ -159,7 +159,7 @@ if( function_exists('acf_add_local_field_group') ):
                 'instructions' => '',
                 'required' => 1,
                 'conditional_logic' => 0,
-                'wrapper' => array (
+                'wrapper' => array(
                     'width' => '',
                     'class' => '',
                     'id' => '',
@@ -167,7 +167,7 @@ if( function_exists('acf_add_local_field_group') ):
                 'default_value' => '',
                 'placeholder' => '',
             ),
-            array (
+            array(
                 'key' => 'field_5aaa7b2ed2d1c',
                 'label' => 'Page de démo',
                 'name' => 'demo_url',
@@ -175,7 +175,7 @@ if( function_exists('acf_add_local_field_group') ):
                 'instructions' => '',
                 'required' => 0,
                 'conditional_logic' => 0,
-                'wrapper' => array (
+                'wrapper' => array(
                     'width' => '',
                     'class' => '',
                     'id' => '',
@@ -183,7 +183,7 @@ if( function_exists('acf_add_local_field_group') ):
                 'default_value' => '',
                 'placeholder' => '',
             ),
-            array (
+            array(
                 'key' => 'field_5aaa7bd07d522',
                 'label' => 'Objectif',
                 'name' => 'objectif',
@@ -191,7 +191,7 @@ if( function_exists('acf_add_local_field_group') ):
                 'instructions' => '',
                 'required' => 0,
                 'conditional_logic' => 0,
-                'wrapper' => array (
+                'wrapper' => array(
                     'width' => '',
                     'class' => '',
                     'id' => '',
@@ -202,7 +202,7 @@ if( function_exists('acf_add_local_field_group') ):
                 'media_upload' => 1,
                 'delay' => 0,
             ),
-            array (
+            array(
                 'key' => 'field_5aaa7cf37d524',
                 'label' => 'Exemple d\'utilisation',
                 'name' => 'exemple',
@@ -210,7 +210,7 @@ if( function_exists('acf_add_local_field_group') ):
                 'instructions' => '',
                 'required' => 0,
                 'conditional_logic' => 0,
-                'wrapper' => array (
+                'wrapper' => array(
                     'width' => '',
                     'class' => '',
                     'id' => '',
@@ -220,7 +220,7 @@ if( function_exists('acf_add_local_field_group') ):
                 'mode' => 'text/html',
                 'theme' => 'monokai',
             ),
-            array (
+            array(
                 'key' => 'field_5aaa7e067d525',
                 'label' => 'Propriétés de la balise',
                 'name' => 'proprietes',
@@ -228,7 +228,7 @@ if( function_exists('acf_add_local_field_group') ):
                 'instructions' => '',
                 'required' => 0,
                 'conditional_logic' => 0,
-                'wrapper' => array (
+                'wrapper' => array(
                     'width' => '',
                     'class' => '',
                     'id' => '',
@@ -239,7 +239,7 @@ if( function_exists('acf_add_local_field_group') ):
                 'media_upload' => 1,
                 'delay' => 0,
             ),
-            array (
+            array(
                 'key' => 'field_5aaa7e2e7d526',
                 'label' => 'Evénements',
                 'name' => 'evenements',
@@ -247,7 +247,7 @@ if( function_exists('acf_add_local_field_group') ):
                 'instructions' => '',
                 'required' => 0,
                 'conditional_logic' => 0,
-                'wrapper' => array (
+                'wrapper' => array(
                     'width' => '',
                     'class' => '',
                     'id' => '',
@@ -258,7 +258,7 @@ if( function_exists('acf_add_local_field_group') ):
                 'media_upload' => 1,
                 'delay' => 0,
             ),
-            array (
+            array(
                 'key' => 'field_5aaa7e4b7d527',
                 'label' => 'Infos complémentaires',
                 'name' => 'infos',
@@ -266,7 +266,7 @@ if( function_exists('acf_add_local_field_group') ):
                 'instructions' => 'snippets, toutes autres infos utiles...',
                 'required' => 0,
                 'conditional_logic' => 0,
-                'wrapper' => array (
+                'wrapper' => array(
                     'width' => '',
                     'class' => '',
                     'id' => '',
@@ -277,10 +277,35 @@ if( function_exists('acf_add_local_field_group') ):
                 'media_upload' => 1,
                 'delay' => 0,
             ),
+            array(
+                'key' => 'field_5aabe6850c885',
+                'label' => 'Screenshots',
+                'name' => 'screenshots',
+                'type' => 'gallery',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'min' => '',
+                'max' => '',
+                'insert' => 'append',
+                'library' => 'all',
+                'min_width' => '',
+                'min_height' => '',
+                'min_size' => '',
+                'max_width' => '',
+                'max_height' => '',
+                'max_size' => '',
+                'mime_types' => '',
+            ),
         ),
-        'location' => array (
-            array (
-                array (
+        'location' => array(
+            array(
+                array(
                     'param' => 'post_type',
                     'operator' => '==',
                     'value' => 'component',

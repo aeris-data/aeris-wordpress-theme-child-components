@@ -23,6 +23,7 @@ while ( have_posts() ) : the_post();
         ?>
         <article id="post-<?php the_ID(); ?>">
             <header>
+            
                 <section class="aeris-component-fonctionnalite">
                     <h2>Type de fonctionnalité :</h2>
                     <?php 
@@ -46,7 +47,6 @@ while ( have_posts() ) : the_post();
                           } 
                     ?>
                 </section>
-                
                 <?php 
                 foreach( $etats as $etat ) { 
                     ?>
@@ -64,7 +64,7 @@ while ( have_posts() ) : the_post();
                 <?php 
                 if (get_field('objectif')) {
                 ?>
-                <section>
+                <section class="aeris-component-objectifs">
                     <h2>Objectifs</h2>
                     <?php the_field('objectif'); ?>
                 </section>
@@ -75,7 +75,7 @@ while ( have_posts() ) : the_post();
                 <?php 
                 if (get_field('exemple')) {
                 ?>
-                <section>
+                <section class="aeris-component-exemple">
                     <h2>Exemple d'utilisation</h2>
                     <?php the_content();
                     //the_field('exemple');?>
@@ -87,7 +87,7 @@ while ( have_posts() ) : the_post();
                 <?php 
                 if (get_field('proprietes')) {
                 ?>
-                <section>
+                <section class="aeris-component-proprietes">
                     <h2>Propriétés de la balise</h2>
                     <?php the_field('proprietes'); ?>
                 </section>
@@ -98,7 +98,7 @@ while ( have_posts() ) : the_post();
                 <?php 
                 if (get_field('evenements')) {
                 ?>
-                <section>
+                <section class="aeris-component-evenements">
                     <h2>Evénements</h2>
                     <?php the_field('evenements'); ?>
                 </section>
@@ -109,53 +109,67 @@ while ( have_posts() ) : the_post();
                 <?php 
                 if (get_field('infos')) {
                 ?>
-                <section>
+                <section class="aeris-component-infos">
                     <h2>Infos complémentaires</h2>
                     <?php the_field('infos'); ?>
                 </section>
                 <?php    
                 }
                 ?>
+                <?php 
 
-                <!-- <section class="aeris-component-code">
-                    <pre>
-                    <?php //the_field('code'); ?>
-                    </pre>
-                <section> -->
-            </div>
-            <aside>
-                 <?php 
-                if (get_field('lien_github')) {
-                ?>
-                <section>
-                    <h2>Lien dépôt de source (Git)</h2>
-                    <p><a href="<?php the_field('lien_github'); ?>"><?php the_field('lien_github'); ?>
-                    </a></p>
+                $images = get_field('screenshots');
+
+                if( $images ): ?>
+                <section class="aeris-component-screenshots">
+                    <h2>Screenshots</h2>
+                    <?php foreach( $images as $image ): ?>
+                        
+                    <a href="<?php echo $image['url']; ?>" class="foobox" rel="gallery" data-caption-title="<?php echo $image['caption']; ?>">
+                        <img src="<?php echo $image['sizes']['thumbnail']; ?>" alt="<?php echo $image['alt']; ?>" />
+                    </a>
+                        
+                    <?php endforeach; ?>
                     
                 </section>
-                <?php    
-                }
-                ?>
+                <?php endif; ?>
 
-                 <?php 
-                if (get_field('demo_url')) {
-                ?>
+                <section class="aeris-component-code">
+                   <pre>
+                    <?php 
+                    $code = get_field('exemple');
+                    $code_htmlentities=htmlentities($code);
+                    //the_field('exemple');
+                    echo $code_htmlentities; 
+                    ?>
+                    </pre>
                 <section>
-                    <h2>Page de démo</h2>
-                    <p><a href="<?php the_field('demo_url'); ?>"><?php the_field('demo_url'); ?>
-                    </a></p>
+            </div>
+            <aside>
+                <?php 
+                if (get_field('lien_github')) {
+                ?>
+                <section class="aeris-component-git">
+                    <a href="<?php the_field('lien_github'); ?>"><span class="icon-git-squared"></span> Source</a>
+                    <?php 
+                    if (get_field('demo_url')) {
+                    ?>
+                    <!-- <section class="aeris-component-demo"> -->
+                    <a href="<?php the_field('demo_url'); ?>" class="aeris-component-demo"><span class="icon-play"></span> Demo</a>
+                    <?php    
+                    }
+                    ?>
                 </section>
                 <?php    
                 }
                 ?>
-
+                
                 <?php
-
                 $dependances = get_field('dependance');
                 
                 if( $dependances ): ?>
                 <section class="aeris-component-dependance">
-                    <h2>Dépendance avec d'autres composants :</h2>
+                    <h2>Dépendance(s)</h2>
                     <ul>
                     <?php foreach( $dependances as $post): // variable must be called $post (IMPORTANT) ?>
                         <?php setup_postdata($post); ?>
@@ -169,7 +183,7 @@ while ( have_posts() ) : the_post();
                 <?php endif; ?>
 
                 <section class="aeris-component-projet">
-                    <h2>Projet(s) utilisant le composant :</h2>
+                    <h2>Projet(s)</h2>
                     <?php 
                     if( $projets ) {
                     ?>
