@@ -74,15 +74,22 @@ while ( have_posts() ) : the_post();
 
                 <?php 
                 if (get_field('exemple')) {
+                    $code = get_field('exemple');
+                    $code_htmlentities=htmlentities($code);
                 ?>
-                <section class="aeris-component-exemple">
+                <!-- <section class="aeris-component-exemple">
                     <h2>Exemple d'utilisation</h2>
-                    <?php the_content();
+                    <?php //the_content();
                     //the_field('exemple');?>
-                </section>
+                </section> -->
+                <section class="aeris-component-code">
+                    <h2>Exemple d'utilisation</h2>
+                    <pre><?php echo $code_htmlentities;?></pre>
+                <section>
                 <?php    
                 }
                 ?>
+                
 
                 <?php 
                 if (get_field('proprietes')) {
@@ -133,17 +140,6 @@ while ( have_posts() ) : the_post();
                     
                 </section>
                 <?php endif; ?>
-
-                <section class="aeris-component-code">
-                   <pre>
-                    <?php 
-                    $code = get_field('exemple');
-                    $code_htmlentities=htmlentities($code);
-                    //the_field('exemple');
-                    echo $code_htmlentities; 
-                    ?>
-                    </pre>
-                <section>
             </div>
             <aside>
                 <?php 
@@ -206,6 +202,13 @@ while ( have_posts() ) : the_post();
                 </section>
             </aside>
         </article><!-- #post-## -->
+        <?php			
+
+			// If comments are open or we have at least one comment, load up the comment template.
+			if ( comments_open() || get_comments_number() ) :
+				comments_template();
+			endif;
+			?>
     </main><!-- #main -->
 </div><!-- #content-area -->
 

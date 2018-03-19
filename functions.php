@@ -108,6 +108,7 @@ function aeris_component_post_type() {
             'not_found_in_trash'=> 'Pas de componsant dans la corbeille'
             ),
           'public' => true,
+          'supports' => array( 'title', 'thumbnail', 'comments', 'revisions'),
           'capability_type' => 'post',
           'has_archive' => true
         )
@@ -317,7 +318,9 @@ if( function_exists('acf_add_local_field_group') ):
         'style' => 'default',
         'label_placement' => 'top',
         'instruction_placement' => 'label',
-        'hide_on_screen' => '',
+        'hide_on_screen' => array (
+            0 => 'the_content',
+        ),   
         'active' => 1,
         'description' => '',
     ));
