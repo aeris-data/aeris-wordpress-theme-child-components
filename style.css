@@ -14,7 +14,7 @@
 */
 
 /* LAYOUT */
-.component article {
+.component main > article {
     display: flex;
     flex-flow: row wrap;
 }
@@ -32,6 +32,10 @@
 
 .component article > aside {
     flex:1 0 250px;
+}
+
+.comments-area > ol {
+    margin:0;
 }
 
 /* SECTIONS */
