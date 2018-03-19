@@ -108,6 +108,7 @@ function aeris_component_post_type() {
             'not_found_in_trash'=> 'Pas de componsant dans la corbeille'
             ),
           'public' => true,
+          'supports' => array( 'title', 'thumbnail', 'comments', 'revisions')
           'capability_type' => 'post',
           'has_archive' => true
         )
