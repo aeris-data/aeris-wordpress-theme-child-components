@@ -43,30 +43,49 @@
     margin-right: 20px;
 }
 
-.aeris-component-fonctionnalite {
-    
-}
-
-.aeris-component-git {
+.aeris-component-links {
     font-size: 1.2rem;
 }
-.aeris-component-git a {
+.aeris-component-links a {
     display: block;
     margin-top: 20px;
-    padding:0 5px;
+    padding:0 10px;
     background:#009FDE;
     border-radius: 5px;
     color:#FFF;
     text-decoration: none;
 }
 
-.aeris-component-git a:hover {
-    background: #333;
+.aeris-component-links a:hover {
+    background:#666;
 }
 
-.aeris-component-demo .icon-play::before {
-    content:'\25BA';
+/* REST CPT */
+input[type="checkbox"],
+input[type="checkbox"] ~ div {
+    display:none;
 }
+
+input[type="checkbox"]:checked ~ div {
+    display:block;
+}
+
+.rest h2 > label {
+    cursor: pointer;
+}
+
+.rest h2 > label::after {
+    font-family: FontAwesome;
+    margin-left: 10px;
+}
+
+.rest h2 > label::after {
+    content:"\f107";
+}
+.rest input[type="checkbox"]:checked + h2 > label::after {
+    content:'\f106';
+}
+
 
 /* ETATS */
 .aeris-component-state {
