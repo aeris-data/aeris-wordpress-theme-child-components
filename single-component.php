@@ -77,11 +77,6 @@ while ( have_posts() ) : the_post();
                     $code = get_field('exemple');
                     $code_htmlentities=htmlentities($code);
                 ?>
-                <!-- <section class="aeris-component-exemple">
-                    <h2>Exemple d'utilisation</h2>
-                    <?php //the_content();
-                    //the_field('exemple');?>
-                </section> -->
                 <section class="aeris-component-code">
                     <h2>Exemple d'utilisation</h2>
                     <pre><?php echo $code_htmlentities;?></pre>
@@ -123,7 +118,7 @@ while ( have_posts() ) : the_post();
                 <?php    
                 }
                 ?>
-                <?php 
+                <?php
 
                 $images = get_field('screenshots');
 
@@ -133,7 +128,7 @@ while ( have_posts() ) : the_post();
                     <?php foreach( $images as $image ): ?>
                         
                     <a href="<?php echo $image['url']; ?>" class="foobox" rel="gallery" data-caption-title="<?php echo $image['caption']; ?>">
-                        <img src="<?php echo $image['sizes']['thumbnail']; ?>" alt="<?php echo $image['alt']; ?>" />
+                        <img src="<?php echo $image['sizes']['medium']; ?>" alt="<?php echo $image['alt']; ?>" />
                     </a>
                         
                     <?php endforeach; ?>
@@ -145,13 +140,13 @@ while ( have_posts() ) : the_post();
                 <?php 
                 if (get_field('lien_github')) {
                 ?>
-                <section class="aeris-component-git">
-                    <a href="<?php the_field('lien_github'); ?>"><span class="icon-git-squared"></span> Source</a>
+                <section class="aeris-component-links">
+                    <a href="<?php the_field('lien_github'); ?>"><span class="fab fa-git-square"></span> Source</a>
                     <?php 
                     if (get_field('demo_url')) {
                     ?>
                     <!-- <section class="aeris-component-demo"> -->
-                    <a href="<?php the_field('demo_url'); ?>" class="aeris-component-demo"><span class="icon-play"></span> Demo</a>
+                    <a href="<?php the_field('demo_url'); ?>"><span class="fas fa-play"></span> Demo</a>
                     <?php    
                     }
                     ?>
@@ -159,13 +154,34 @@ while ( have_posts() ) : the_post();
                 <?php    
                 }
                 ?>
-                
+
+                <!-- CONTACTS -->
+                <?php 
+                if (get_field( 'contacts' )) {
+                    $contacts_array = get_field( 'contacts' ); 
+                    // $count_contact=count($contacts_array);
+                ?>
+                <section class="aeris-component-contact">
+                    <h2><span class="fas fa-user"></span> Contact(s)</h2>
+                    <ul>
+                    <?php foreach ($contacts_array as $contact): ?>
+                        <li> <?php //var_dump($contact);?>
+                            <?php //echo "".$contact["display_name"]." <small>(".$contact["user_firstname"]." ".$contact["user_lastname"].")</small>"; ?> 
+                            <?php echo "".$contact["display_name"]."";?> 
+                        </li>
+                    <?php endforeach; ?>
+                    </ul>
+                </section>
                 <?php
-                $dependances = get_field('dependance');
-                
+                }
+                ?>
+
+                <!-- DEPENDANCES -->
+                <?php
+                $dependances = get_field('dependance');                
                 if( $dependances ): ?>
                 <section class="aeris-component-dependance">
-                    <h2>Dépendance(s)</h2>
+                    <h2><span class="fas fa-cogs"></span> Dépendance(s)</h2>
                     <ul>
                     <?php foreach( $dependances as $post): // variable must be called $post (IMPORTANT) ?>
                         <?php setup_postdata($post); ?>
@@ -177,12 +193,31 @@ while ( have_posts() ) : the_post();
                     <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
                  </section>
                 <?php endif; ?>
+                
+                <!-- SERVICES REST -->
+                <?php
+                $services_rest_relations = get_field('services_rest_relations');                
+                if( $services_rest_relations ): ?>
+                <section class="aeris-component-servicerest">
+                    <h2><span class="fas fa-cog"></span> Service(s) REST</h2>
+                    <ul>
+                    <?php foreach( $services_rest_relations as $post): // variable must be called $post (IMPORTANT) ?>
+                        <?php setup_postdata($post); ?>
+                        <li>
+                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                        </li>
+                    <?php endforeach; ?>
+                    </ul>
+                    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+                 </section>
+                <?php endif; ?>                
 
+                <!-- PROJETS -->
+                 <?php 
+                if( $projets ) {
+                ?>
                 <section class="aeris-component-projet">
-                    <h2>Projet(s)</h2>
-                    <?php 
-                    if( $projets ) {
-                    ?>
+                    <h2><span class="fas fa-rocket"></span> Projet(s)</h2>                   
                     <ul>
                     <?php
                         foreach( $projets as $projet ) { 
@@ -195,11 +230,11 @@ while ( have_posts() ) : the_post();
                             }
                         }
                         ?>
-                    </ul>
-                    <?php
-                    } 
-                    ?>
+                    </ul>                    
                 </section>
+                <?php
+                } 
+                ?>
             </aside>
         </article><!-- #post-## -->
         <?php			

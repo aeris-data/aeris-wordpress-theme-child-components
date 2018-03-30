@@ -2,7 +2,25 @@
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 function theme_enqueue_styles() {
     wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
+    wp_enqueue_script( 'font-awesome', 'https://use.fontawesome.com/releases/v5.0.9/js/all.js', array(), null );
 
+}
+
+add_filter( 'script_loader_tag', 'add_defer_attribute', 10, 2 );
+/**
+ * Filter the HTML script tag of `font-awesome` script to add `defer` attribute.
+ *
+ * @param string $tag    The <script> tag for the enqueued script.
+ * @param string $handle The script's registered handle.
+ *
+ * @return   Filtered HTML script tag.
+ */
+function add_defer_attribute( $tag, $handle ) {
+    if ( 'font-awesome' === $handle ) {
+        $tag = str_replace( ' src', ' defer src', $tag );
+    }
+
+    return $tag;
 }
 
 /******************************************************************
@@ -81,6 +99,29 @@ function aeris_component_custom_taxonomies()
         )
     );
 
+    // Type de service REST
+    register_taxonomy(
+        'type_rest',
+        'service-rest',
+        array(
+        'label' => 'Type',
+        'labels' => array(
+            'name' => 'Type',
+            'singular_name' => 'Type de service',
+            'all_items' => 'Toutes les types de services',
+            'edit_item' => 'Éditer le type de service',
+            'view_item' => 'Voir le type de service',
+            'update_item' => 'Mettre à jour le type de service',
+            'add_new_item' => 'Ajouter une type de service',
+            'new_item_name' => 'Nouveau type de service',
+            'search_items' => 'Rechercher parmi les types de services',
+            'popular_items' => 'Types de services les plus utilisées'
+            ),
+        'hierarchical' => true,
+        'show_ui'   => true
+        )
+    );
+
     // register_taxonomy_for_object_type( 'etat', 'component' );
 }
 
@@ -99,13 +140,13 @@ function aeris_component_post_type() {
             'name' => 'Composants',
             'singular_name' => 'Composant',
             'all_items' => 'Tous les composants',
-            'add_new_item' => 'Ajouter un componsant',
-            'edit_item' => 'Éditer le componsant',
-            'new_item' => 'Nouveau componsant',
-            'view_item' => 'Voir le componsant',
+            'add_new_item' => 'Ajouter un composant',
+            'edit_item' => 'Éditer le composant',
+            'new_item' => 'Nouveau composant',
+            'view_item' => 'Voir le composant',
             'search_items' => 'Rechercher parmi les composants',
-            'not_found' => 'Pas de componsant trouvé',
-            'not_found_in_trash'=> 'Pas de componsant dans la corbeille'
+            'not_found' => 'Pas de composant trouvé',
+            'not_found_in_trash'=> 'Pas de composant dans la corbeille'
             ),
           'public' => true,
           'supports' => array( 'title', 'thumbnail', 'comments', 'revisions'),
@@ -113,216 +154,30 @@ function aeris_component_post_type() {
           'has_archive' => true
         )
       );
+
+      register_post_type(
+        'service-rest',
+        array(
+          'label' => 'Service REST',
+          'labels' => array(
+            'name' => 'Service REST',
+            'singular_name' => 'Service REST',
+            'all_items' => 'Tous les services REST',
+            'add_new_item' => 'Ajouter un service REST',
+            'edit_item' => 'Éditer le service REST',
+            'new_item' => 'Nouveau service REST',
+            'view_item' => 'Voir le service REST',
+            'search_items' => 'Rechercher parmi les services REST',
+            'not_found' => 'Pas de service REST trouvé',
+            'not_found_in_trash'=> 'Pas de service REST dans la corbeille'
+            ),
+          'public' => true,
+          'supports' => array( 'title', 'revisions'),
+          'capability_type' => 'post',
+          'has_archive' => true
+        )
+      );
     }
 
-/******************************************************************
-* ACF 
-*/
-
-if( function_exists('acf_add_local_field_group') ):
-
-    acf_add_local_field_group(array(
-        'key' => 'group_5aa7fd7ac2ed6',
-        'title' => 'Meta component page',
-        'fields' => array(
-            array(
-                'key' => 'field_5aa7ffe0652cc',
-                'label' => 'Dépendance',
-                'name' => 'dependance',
-                'type' => 'relationship',
-                'instructions' => '',
-                'required' => 0,
-                'conditional_logic' => 0,
-                'wrapper' => array(
-                    'width' => '',
-                    'class' => '',
-                    'id' => '',
-                ),
-                'post_type' => array(
-                    0 => 'component',
-                ),
-                'taxonomy' => array(
-                ),
-                'filters' => array(
-                    0 => 'search',
-                    1 => 'taxonomy',
-                ),
-                'elements' => '',
-                'min' => '',
-                'max' => '',
-                'return_format' => 'object',
-            ),
-            array(
-                'key' => 'field_5aaa7a51d2d19',
-                'label' => 'Lien dépôt de source (Git)',
-                'name' => 'lien_github',
-                'type' => 'url',
-                'instructions' => '',
-                'required' => 1,
-                'conditional_logic' => 0,
-                'wrapper' => array(
-                    'width' => '',
-                    'class' => '',
-                    'id' => '',
-                ),
-                'default_value' => '',
-                'placeholder' => '',
-            ),
-            array(
-                'key' => 'field_5aaa7b2ed2d1c',
-                'label' => 'Page de démo',
-                'name' => 'demo_url',
-                'type' => 'url',
-                'instructions' => '',
-                'required' => 0,
-                'conditional_logic' => 0,
-                'wrapper' => array(
-                    'width' => '',
-                    'class' => '',
-                    'id' => '',
-                ),
-                'default_value' => '',
-                'placeholder' => '',
-            ),
-            array(
-                'key' => 'field_5aaa7bd07d522',
-                'label' => 'Objectif',
-                'name' => 'objectif',
-                'type' => 'wysiwyg',
-                'instructions' => '',
-                'required' => 0,
-                'conditional_logic' => 0,
-                'wrapper' => array(
-                    'width' => '',
-                    'class' => '',
-                    'id' => '',
-                ),
-                'default_value' => '',
-                'tabs' => 'all',
-                'toolbar' => 'full',
-                'media_upload' => 1,
-                'delay' => 0,
-            ),
-            array(
-                'key' => 'field_5aaa7cf37d524',
-                'label' => 'Exemple d\'utilisation',
-                'name' => 'exemple',
-                'type' => 'acf_code_field',
-                'instructions' => '',
-                'required' => 0,
-                'conditional_logic' => 0,
-                'wrapper' => array(
-                    'width' => '',
-                    'class' => '',
-                    'id' => '',
-                ),
-                'default_value' => '',
-                'placeholder' => '',
-                'mode' => 'text/html',
-                'theme' => 'monokai',
-            ),
-            array(
-                'key' => 'field_5aaa7e067d525',
-                'label' => 'Propriétés de la balise',
-                'name' => 'proprietes',
-                'type' => 'wysiwyg',
-                'instructions' => '',
-                'required' => 0,
-                'conditional_logic' => 0,
-                'wrapper' => array(
-                    'width' => '',
-                    'class' => '',
-                    'id' => '',
-                ),
-                'default_value' => '',
-                'tabs' => 'all',
-                'toolbar' => 'full',
-                'media_upload' => 1,
-                'delay' => 0,
-            ),
-            array(
-                'key' => 'field_5aaa7e2e7d526',
-                'label' => 'Evénements',
-                'name' => 'evenements',
-                'type' => 'wysiwyg',
-                'instructions' => '',
-                'required' => 0,
-                'conditional_logic' => 0,
-                'wrapper' => array(
-                    'width' => '',
-                    'class' => '',
-                    'id' => '',
-                ),
-                'default_value' => '',
-                'tabs' => 'all',
-                'toolbar' => 'full',
-                'media_upload' => 1,
-                'delay' => 0,
-            ),
-            array(
-                'key' => 'field_5aaa7e4b7d527',
-                'label' => 'Infos complémentaires',
-                'name' => 'infos',
-                'type' => 'wysiwyg',
-                'instructions' => 'snippets, toutes autres infos utiles...',
-                'required' => 0,
-                'conditional_logic' => 0,
-                'wrapper' => array(
-                    'width' => '',
-                    'class' => '',
-                    'id' => '',
-                ),
-                'default_value' => '',
-                'tabs' => 'all',
-                'toolbar' => 'full',
-                'media_upload' => 1,
-                'delay' => 0,
-            ),
-            array(
-                'key' => 'field_5aabe6850c885',
-                'label' => 'Screenshots',
-                'name' => 'screenshots',
-                'type' => 'gallery',
-                'instructions' => '',
-                'required' => 0,
-                'conditional_logic' => 0,
-                'wrapper' => array(
-                    'width' => '',
-                    'class' => '',
-                    'id' => '',
-                ),
-                'min' => '',
-                'max' => '',
-                'insert' => 'append',
-                'library' => 'all',
-                'min_width' => '',
-                'min_height' => '',
-                'min_size' => '',
-                'max_width' => '',
-                'max_height' => '',
-                'max_size' => '',
-                'mime_types' => '',
-            ),
-        ),
-        'location' => array(
-            array(
-                array(
-                    'param' => 'post_type',
-                    'operator' => '==',
-                    'value' => 'component',
-                ),
-            ),
-        ),
-        'menu_order' => 0,
-        'position' => 'normal',
-        'style' => 'default',
-        'label_placement' => 'top',
-        'instruction_placement' => 'label',
-        'hide_on_screen' => array (
-            0 => 'the_content',
-        ),   
-        'active' => 1,
-        'description' => '',
-    ));
-    
-    endif;
+/** LOAD ACF CONFIG */   
+include ('acf-config.php');
