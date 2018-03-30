@@ -118,7 +118,7 @@ while ( have_posts() ) : the_post();
                 <?php    
                 }
                 ?>
-                <?php 
+                <?php
 
                 $images = get_field('screenshots');
 
@@ -128,7 +128,7 @@ while ( have_posts() ) : the_post();
                     <?php foreach( $images as $image ): ?>
                         
                     <a href="<?php echo $image['url']; ?>" class="foobox" rel="gallery" data-caption-title="<?php echo $image['caption']; ?>">
-                        <img src="<?php echo $image['sizes']['thumbnail']; ?>" alt="<?php echo $image['alt']; ?>" />
+                        <img src="<?php echo $image['sizes']['medium']; ?>" alt="<?php echo $image['alt']; ?>" />
                     </a>
                         
                     <?php endforeach; ?>
