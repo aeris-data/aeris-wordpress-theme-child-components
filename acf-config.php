@@ -285,7 +285,6 @@ if( function_exists('acf_add_local_field_group') ):
                     0 => 'service-rest',
                 ),
                 'taxonomy' => array (
-                    0 => 'type_rest:test-type-rest',
                 ),
                 'filters' => array (
                     0 => 'search',
