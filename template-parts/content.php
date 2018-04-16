@@ -37,7 +37,10 @@ $categories = get_the_terms( $post->ID, 'category');
     </header>
     <?php 
     if (get_field('objectif')) {
-        $objectifs = substr(get_field('objectif'), 0, 200);
+        $objectifs = get_field('objectif');
+        // remove <img> tag
+        $objectifs = preg_replace("/<img[^>]+\>/i", "", $objectifs); 
+        $objectifs = substr($objectifs, 0, 200);
     ?>
     <section class="aeris-component-objectifs">
         <?php 
